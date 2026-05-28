@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply text-slate-800 antialiased font-sans bg-gradient-to-tr from-slate-50 via-slate-50/80 to-indigo-50/30 min-h-screen selection:bg-brand-100 selection:text-brand-900;
+    }
+}
+
+@layer components {
+    /* Layout & Containers */
+    .ee-page {
+        @apply py-10 sm:py-14 animate-fade-in;
+    }
+
+    .ee-container {
+        @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-10;
+    }
+
+    /* Premium Glassmorphic Cards */
+    .ee-card {
+        @apply bg-white/60 backdrop-blur-xl rounded-3xl border border-white/50 shadow-[0_8px_32px_0_rgba(148,163,184,0.04)] overflow-hidden transition-all duration-300;
+    }
+
+    .ee-card:hover {
+        @apply bg-white/70 shadow-[0_20px_40px_-8px_rgba(99,102,241,0.08),0_10px_20px_-6px_rgba(0,0,0,0.01)] border-white/80 -translate-y-0.5;
+    }
+
+    .ee-card-header {
+        @apply px-8 py-6 border-b border-white/40 bg-gradient-to-b from-white/30 to-white/10 flex flex-wrap items-center justify-between gap-4;
+    }
+
+    .ee-card-body {
+        @apply p-8;
+    }
+
+    /* Luxurious Stats & Metric Panels */
+    .ee-stat {
+        @apply ee-card p-7 relative border-l-4 border-l-brand-500 overflow-hidden flex flex-col justify-between min-h-[140px];
+    }
+
+    .ee-stat::before {
+        content: '';
+        @apply absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-100/10 to-transparent rounded-full pointer-events-none;
+    }
+
+    .ee-stat-label {
+        @apply text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 font-sans;
+    }
+
+    .ee-stat-value {
+        @apply text-4xl font-extrabold tracking-tight mt-3 bg-gradient-to-r from-slate-900 to-indigo-950 bg-clip-text text-transparent;
+    }
+
+    /* Premium Buttons with subtle scaling */
+    .ee-btn {
+        @apply inline-flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider rounded-xl px-5 py-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] cursor-pointer;
+    }
+
+    .ee-btn-primary {
+        @apply ee-btn bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-500/25 focus:ring-indigo-500 border border-transparent;
+    }
+
+    .ee-btn-secondary {
+        @apply ee-btn bg-white text-slate-700 border border-slate-200/80 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900 hover:shadow-sm focus:ring-slate-400;
+    }
+
+    .ee-btn-danger {
+        @apply ee-btn bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 hover:text-rose-800 hover:border-rose-300 focus:ring-rose-500;
+    }
+
+    .ee-btn-success {
+        @apply ee-btn bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 hover:text-emerald-800 hover:border-emerald-300 focus:ring-emerald-500;
+    }
+
+    .ee-btn-ghost {
+        @apply ee-btn text-indigo-700 bg-indigo-50/50 hover:bg-indigo-50 hover:text-indigo-800 focus:ring-indigo-300;
+    }
+
+    .ee-btn-sm {
+        @apply text-[10px] px-3.5 py-2 rounded-lg tracking-widest;
+    }
+
+    /* Classy Elegant Inputs */
+    .ee-input {
+        @apply w-full rounded-xl border-slate-200 bg-slate-50/40 px-4 py-3 text-sm text-slate-800 transition shadow-sm focus:bg-white focus:border-brand-500 focus:ring-brand-500 placeholder-slate-400;
+    }
+
+    .ee-label {
+        @apply block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2;
+    }
+
+    /* High-End Styling for Tables */
+    .ee-table-wrap {
+        @apply overflow-x-auto;
+    }
+
+    .ee-table {
+        @apply w-full text-sm text-left border-collapse;
+    }
+
+    .ee-table thead {
+        @apply bg-white/30 backdrop-blur-md text-slate-400 border-b border-white/40;
+    }
+
+    .ee-table th {
+        @apply px-8 py-5 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap;
+    }
+
+    .ee-table td {
+        @apply px-8 py-5 align-middle text-slate-700 font-medium;
+    }
+
+    .ee-table tbody tr {
+        @apply border-b border-slate-50/40 hover:bg-indigo-50/10 transition duration-200;
+    }
+
+    /* Clean visual badges */
+    .ee-badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest;
+    }
+
+    .ee-badge-pending {
+        @apply ee-badge bg-amber-50 text-amber-700 border border-amber-100/70;
+    }
+
+    .ee-badge-confirmed,
+    .ee-badge-accepted {
+        @apply ee-badge bg-emerald-50 text-emerald-700 border border-emerald-100/70;
+    }
+
+    .ee-badge-declined,
+    .ee-badge-rejected {
+        @apply ee-badge bg-rose-50 text-rose-700 border border-rose-100/70;
+    }
+
+    .ee-badge-completed {
+        @apply ee-badge bg-indigo-50 text-indigo-700 border border-indigo-100/70;
+    }
+
+    .ee-badge-type {
+        @apply ee-badge bg-brand-50 text-brand-700 border border-brand-100/70 normal-case tracking-normal font-semibold;
+    }
+
+    /* Elegant Empty States */
+    .ee-empty {
+        @apply px-8 py-16 text-center text-slate-400 font-medium text-sm flex flex-col items-center justify-center gap-3;
+    }
+
+    /* High-fidelity Progress Indicators */
+    .ee-progress-track {
+        @apply h-2.5 w-full bg-slate-100/70 rounded-full overflow-hidden border border-slate-100/20 shadow-inner;
+    }
+
+    .ee-progress-bar {
+        @apply h-full rounded-full bg-gradient-to-r from-brand-500 to-indigo-600 transition-all duration-700 ease-out shadow-sm;
+    }
+}
+
+/* Luxury animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
