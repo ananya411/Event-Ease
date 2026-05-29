@@ -19,8 +19,8 @@ class Budget extends Model
     ];
 
     protected $casts = [
-        'amount' => 'float',
-        'expense_date' => 'date',
+        'amount'       => 'float',
+        'expense_date' => 'string',
     ];
 
     public function event()

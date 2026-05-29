@@ -214,9 +214,28 @@
                             <div class="p-6">
                                 <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition leading-tight">{{ $event->title }}</h3>
                                 
-                                <div class="flex items-center gap-1.5 text-slate-500 text-xs font-semibold mt-3">
-                                    <svg class="w-4.5 h-4.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                                    <span class="truncate">{{ $event->location }}</span>
+                                {{-- Info Chips Row --}}
+                                @php
+                                    $daysLeft = now()->diffInDays(\Carbon\Carbon::parse($event->event_date), false);
+                                    $daysLabel = $daysLeft > 0 ? $daysLeft . 'd away' : ($daysLeft == 0 ? 'Today!' : 'Past');
+                                    $daysColor = $daysLeft > 30 ? 'bg-blue-50 text-blue-600' : ($daysLeft > 7 ? 'bg-amber-50 text-amber-600' : 'bg-rose-50 text-rose-600');
+                                @endphp
+                                <div class="flex flex-wrap items-center gap-2 mt-3">
+                                    {{-- Venue --}}
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 text-[11px] font-semibold max-w-[160px] truncate">
+                                        <svg class="w-3 h-3 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        <span class="truncate">{{ $event->location }}</span>
+                                    </span>
+                                    {{-- Days countdown --}}
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg {{ $daysColor }} text-[11px] font-bold">
+                                        <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        {{ $daysLabel }}
+                                    </span>
+                                    {{-- Guest count --}}
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 text-[11px] font-bold">
+                                        <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        {{ $eTotal }} guests
+                                    </span>
                                 </div>
 
                                 <!-- Guest RSVP progress tracking -->
@@ -281,10 +300,19 @@
                         </thead>
                         <tbody>
                             @forelse($recentExpenses as $expense)
+                            @php
+                                try {
+                                    $expDate = $expense->expense_date
+                                        ? \Carbon\Carbon::parse($expense->expense_date)->format('M d, Y')
+                                        : ($expense->created_at ? \Carbon\Carbon::parse($expense->created_at)->format('M d, Y') : '—');
+                                } catch (\Exception $e) {
+                                    $expDate = '—';
+                                }
+                            @endphp
                             <tr>
                                 <td class="font-bold text-slate-900">{{ $expense->category }}</td>
                                 <td class="font-bold text-rose-600">₹{{ number_format($expense->amount) }}</td>
-                                <td class="text-slate-500 font-semibold">{{ \Carbon\Carbon::parse($expense->expense_date)->format('M d, Y') }}</td>
+                                <td class="text-slate-500 font-semibold">{{ $expDate }}</td>
                             </tr>
                             @empty
                             <tr>

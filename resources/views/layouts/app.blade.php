@@ -24,7 +24,7 @@
         .ee-card:hover {
             background: rgba(255, 255, 255, 0.6) !important;
             border-color: rgba(255, 255, 255, 0.8) !important;
-            box-shadow: 0 20px 40px -8px rgba(99, 102, 241, 0.1), 0 10px 20px -6px rgba(0, 0, 0, 0.02) !important;
+            box-shadow: 0 20px 40px -8px rgba(22, 163, 74, 0.12), 0 10px 20px -6px rgba(0, 0, 0, 0.02) !important;
             transform: translateY(-2px) !important;
         }
         .ee-card-header {
@@ -49,9 +49,9 @@
 </head>
 <body class="font-sans min-h-screen bg-gradient-to-br from-slate-50 via-white to-brand-50/40 relative overflow-x-hidden">
     <!-- Ambient Background Glowing Orbs for Glassmorphism -->
-    <div class="absolute top-[10%] left-[5%] w-[35rem] h-[35rem] rounded-full bg-gradient-to-br from-indigo-300/10 to-brand-300/5 blur-[120px] pointer-events-none -z-10 animate-pulse" style="animation-duration: 10s;"></div>
-    <div class="absolute top-[40%] right-[5%] w-[40rem] h-[40rem] rounded-full bg-gradient-to-tr from-brand-300/10 to-rose-300/5 blur-[130px] pointer-events-none -z-10 animate-pulse" style="animation-duration: 15s;"></div>
-    <div class="absolute bottom-[10%] left-[10%] w-[30rem] h-[30rem] rounded-full bg-gradient-to-tr from-violet-300/10 to-indigo-300/5 blur-[110px] pointer-events-none -z-10 animate-pulse" style="animation-duration: 12s;"></div>
+    <div class="absolute top-[10%] left-[5%] w-[35rem] h-[35rem] rounded-full bg-gradient-to-br from-emerald-300/10 to-green-300/5 blur-[120px] pointer-events-none -z-10 animate-pulse" style="animation-duration: 10s;"></div>
+    <div class="absolute top-[40%] right-[5%] w-[40rem] h-[40rem] rounded-full bg-gradient-to-tr from-green-300/10 to-teal-300/5 blur-[130px] pointer-events-none -z-10 animate-pulse" style="animation-duration: 15s;"></div>
+    <div class="absolute bottom-[10%] left-[10%] w-[30rem] h-[30rem] rounded-full bg-gradient-to-tr from-emerald-300/10 to-green-300/5 blur-[110px] pointer-events-none -z-10 animate-pulse" style="animation-duration: 12s;"></div>
     @include('layouts.navigation')
 
     @if (session('success') || session('error') || $errors->any())
